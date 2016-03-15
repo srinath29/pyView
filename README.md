@@ -10,7 +10,7 @@ from helper import View
 import pandas as pd
 import numpy as np
 
-df = pd.DataFrame(np.arrange(5,5)
+df = pd.DataFrame(np.random.randn(5,5))
 View(df)
 
 ````
