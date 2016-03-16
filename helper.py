@@ -16,6 +16,7 @@ class Helper(viewBase, viewForm):
     def __version__(self):
         print("0.0.1")
 
+
     def View(self, df):
         """
         This is to view a data frame
@@ -28,7 +29,7 @@ class Helper(viewBase, viewForm):
         self.table.setColumnCount(len(df.columns))
         self.table.setRowCount(len(df.index))
         self.sortOrder = {}
-        for p in df.columns:
+        for p in range(len(df.columns)):
             self.sortOrder[p] = ""
         for i in range(len(df.index)):
             for j in range(len(df.columns)):
@@ -50,7 +51,7 @@ class Helper(viewBase, viewForm):
         self.show()
 
     def sortByColumn(self,p):
-        print(self.sortOrder[p])
+        #print(self.sortOrder[p])
         if self.sortOrder[p]=="":
             self.horizHeader.setSortIndicator(p, Qt.Qt.DescendingOrder)
             self.table.sortByColumn(p, Qt.Qt.DescendingOrder)
