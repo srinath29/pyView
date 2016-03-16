@@ -16,7 +16,8 @@ View(df)
 ````
 That's all. 
 
-###Warning : This is process is resource intensive as it creates lot of pyQt objects. Still the sort by column methods are not implemented. It will take sometime to implement them.
+###Warning : This is process is resource intensive as it creates lot of pyQt objects. 
+###Now selecting a column will sort it. 
 
 
 
