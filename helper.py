@@ -1,4 +1,5 @@
-from PyQt4 import QtGui, uic
+from PyQt4 import QtGui, uic, QtCore, Qt
+import PyQt4
 import pandas
 import sys
 import os
@@ -26,7 +27,9 @@ class Helper(viewBase, viewForm):
         #self.table = QtGui.QTableWidget()
         self.table.setColumnCount(len(df.columns))
         self.table.setRowCount(len(df.index))
-
+        self.sortOrder = {}
+        for p in df.columns:
+            self.sortOrder[p] = ""
         for i in range(len(df.index)):
             for j in range(len(df.columns)):
                 self.table.setItem(i,j, QtGui.QTableWidgetItem(str(df.iloc[i][j])))
@@ -40,7 +43,27 @@ class Helper(viewBase, viewForm):
         #     self.table.horizontalHeaderItem(i).setText(str(df.columns[i]))
 
 
+        self.horizHeader = self.table.horizontalHeader()
+        self.horizHeader.setSortIndicatorShown(True)
+        QtCore.QObject.connect(self.horizHeader, QtCore.SIGNAL("sectionClicked(int)"), self.sortByColumn)
+
         self.show()
+
+    def sortByColumn(self,p):
+        print(self.sortOrder[p])
+        if self.sortOrder[p]=="":
+            self.horizHeader.setSortIndicator(p, Qt.Qt.DescendingOrder)
+            self.table.sortByColumn(p, Qt.Qt.DescendingOrder)
+            self.sortOrder[p]="D"
+        elif self.sortOrder[p]=="A":
+            self.horizHeader.setSortIndicator(p, Qt.Qt.DescendingOrder)
+            self.table.sortByColumn(p, Qt.Qt.DescendingOrder)
+            self.sortOrder[p]="D"
+        elif self.sortOrder[p]=="D":
+            self.horizHeader.setSortIndicator(p, Qt.Qt.AscendingOrder)
+            self.table.sortByColumn(p, Qt.Qt.AscendingOrder)
+            self.sortOrder[p]="A"
+
 
 
 
