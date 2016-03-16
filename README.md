@@ -1,5 +1,5 @@
 # pyView
-This is to give View Function to pandas DataFrame using the pyQT framework
+This is to give View Function to pandas DataFrame using the pyQT framework. (If you have Anaconda[https://www.continuum.io/downloads] full package installed then it will do)
 This is tested for python 3+ version.
 
 To use this you need to have pyQT,pandas installed. 
